@@ -1,12 +1,18 @@
 package com.depp3.productos.app.producto.service;
 
+import com.depp3.productos.app.producto.ProductValidations;
 import com.depp3.productos.app.producto.data.domain.Product;
 import com.depp3.productos.app.producto.data.dto.ProductDTO;
 import com.depp3.productos.app.producto.data.mapper.ProductMapper;
 import com.depp3.productos.app.producto.data.repository.ProductRepository;
+import com.depp3.productos.app.producto.exception.ProductException;
+import com.depp3.productos.app.producto.type.ProductMessageError;
+import com.depp3.productos.generals.Type.InternalErrorMessage;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,21 +31,20 @@ public class ProductService {
     }
 
     public ProductDTO getProductById(Long id) {
-        // TODO: crear exception cuando no existe el producto buscado
+        ProductValidations.getByIdValidation(repository, id);
+
         return ProductMapper.getInstance().productToProductDTO(repository.getReferenceById(id));
     }
 
     public ProductDTO saveProduct(ProductDTO productDTO) {
-        // TODO: crear validaciones para guardar un producto correctamente
+        ProductValidations.saveValidation(repository, productDTO);
 
         Product product = ProductMapper.getInstance().productDTOToProduct(productDTO);
-        ProductDTO savedProduct = ProductMapper.getInstance().productToProductDTO(repository.save(product));
-
-        return savedProduct;
+        return ProductMapper.getInstance().productToProductDTO(repository.save(product));
     }
 
     public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
-        // TODO: crear validaciones para modificar un producto correctamente
+        ProductValidations.modifyValidation(repository, productDTO, id);
 
         Product modified = repository.getReferenceById(id);
         modified.setDescription(productDTO.getDescription());
@@ -51,10 +56,10 @@ public class ProductService {
     }
 
     public String deleteProduct(Long id) {
-        // TODO: crear validaciones para borrar un producto correctamente
+        ProductValidations.deleteValidation(repository, id);
 
         String name = repository.findById(id).get().getName();
         repository.deleteById(id);
-        return name;
+        return String.format(ProductMessageError.PRODUCT_DELETE_SUCCESS.getDescription(), name);
     }
 }
