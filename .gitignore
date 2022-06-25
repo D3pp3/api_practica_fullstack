@@ -34,3 +34,6 @@ build/
 
 ### Properties ###
 application-dev.properties
+
+### LOGS ###
+*.log

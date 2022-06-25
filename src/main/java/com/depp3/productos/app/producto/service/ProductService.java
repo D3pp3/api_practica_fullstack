@@ -5,14 +5,10 @@ import com.depp3.productos.app.producto.data.domain.Product;
 import com.depp3.productos.app.producto.data.dto.ProductDTO;
 import com.depp3.productos.app.producto.data.mapper.ProductMapper;
 import com.depp3.productos.app.producto.data.repository.ProductRepository;
-import com.depp3.productos.app.producto.exception.ProductException;
 import com.depp3.productos.app.producto.type.ProductMessageError;
-import com.depp3.productos.generals.Type.InternalErrorMessage;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
