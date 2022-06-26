@@ -5,7 +5,7 @@
 
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{ISO8601} %highlight(%-5level) [%thread] %logger{100} %yellow(%C{1.}) : %msg%n%throwable</pattern>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -22,13 +22,22 @@
         </rollingPolicy>
     </appender>
 
-    <root level="info">
-        <appender-ref ref="Console" />
-    </root>
-
-    <logger name="com.depp3.productos" level="warn" additivity="false">
-        <appender-ref ref="RollingFile" />
-        <appender-ref ref="Console" />
-    </logger>
+    <springProfile name="dev">
+        <root level="info">
+            <appender-ref ref="Console"/>
+        </root>
+        <logger name="com.depp3.productos" level="debug" additivity="false" >
+            <appender-ref ref="Console" />
+            <appender-ref ref="RollingFile"/>
+        </logger>
+    </springProfile>
+    <springProfile name="prod">
+        <root level="warn">
+            <appender-ref ref="RollingFile"/>
+        </root>
+        <logger name="com.depp3.productos" level="warn" additivity="false" >
+            <appender-ref ref="RollingFile" />
+        </logger>
+    </springProfile>
 
 </configuration>

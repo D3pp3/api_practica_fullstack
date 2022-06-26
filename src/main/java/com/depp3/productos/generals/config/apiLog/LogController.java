@@ -15,9 +15,9 @@ public class LogController {
 
     @Before("allControllers()")
     public void apiRequestLog(JoinPoint jp) {
-        log.info("----------------------------- O -----------------------------");
-        log.info(jp.getSignature().getName() + "()" );
-        log.info("----------------------------- O -----------------------------");
+        log.debug("----------------------------- O -----------------------------");
+        log.debug(jp.getSignature().getName() + "()" );
+        log.debug("----------------------------- O -----------------------------");
     }
 
     @AfterThrowing(pointcut = "allControllers()", throwing = "result")
@@ -30,6 +30,8 @@ public class LogController {
 
     @AfterReturning(pointcut = "allControllers()",  returning = "result")
     public void apiResponseLog(JoinPoint jp, ResponseEntity result) {
-        log.info(result.getBody().toString());
+        log.debug("----------------------------- O -----------------------------");
+        log.debug(result.getBody().toString());
+        log.debug("----------------------------- O -----------------------------");
     }
 }
