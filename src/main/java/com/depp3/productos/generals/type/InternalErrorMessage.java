@@ -1,4 +1,4 @@
-package com.depp3.productos.generals.Type;
+package com.depp3.productos.generals.type;
 
 public enum InternalErrorMessage {
 

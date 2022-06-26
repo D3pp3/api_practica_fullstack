@@ -32,7 +32,7 @@ public class ProductController {
             @ApiResponse(responseCode = "404", description = "[]",
                     content = @Content)
     })
-    @GetMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
         return ResponseEntity.ok(service.findAllProducts());
     }
@@ -47,7 +47,7 @@ public class ProductController {
             @ApiResponse(responseCode = "404", description = "El producto no existe",
                     content = @Content)
     })
-    @GetMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<ProductDTO> getProductById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.getProductById(id));
     }
@@ -62,7 +62,7 @@ public class ProductController {
             @ApiResponse(responseCode = "404", description = "El al crear el producto",
                     content = @Content)
     })
-    @PostMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<ProductDTO> saveProduct(@RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(service.saveProduct(productDTO));
     }
@@ -77,7 +77,7 @@ public class ProductController {
             @ApiResponse(responseCode = "404", description = "No pudo actualizar el producto",
                     content = @Content)
     })
-    @PutMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<ProductDTO> updateProduct(@PathVariable("id") Long id, @RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(service.updateProduct(id, productDTO));
     }
@@ -92,7 +92,7 @@ public class ProductController {
             @ApiResponse(responseCode = "404", description = "No pudo eliminar el producto",
                     content = @Content)
     })
-    @DeleteMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteProduct(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.deleteProduct(id));
     }
