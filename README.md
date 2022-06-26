@@ -4,6 +4,7 @@ Esta es una API realizada con java lo cual implementare:
 
     - Conexión a una base de datos, Mysql.
     - Manejos de excepciones.
+    - Configuracion de logs dependiendo el perfil.
     - Documentación con Swagger
     - FrontEnd con React
 
@@ -14,3 +15,7 @@ Una vez descargado el proyecto debemos configurar el archivo [application.proper
 ![img](https://res.cloudinary.com/depp3dev/image/upload/v1655786494/full-stack/configProperties_cvt3xg.png)
 
 Modificando **port** y **DB**, el usuario y pass en las properties le damos a play y deberia correr sin problemas el proyecto.
+
+**Configuración Logs:**
+
+![img](https://res.cloudinary.com/depp3dev/image/upload/v1656276550/full-stack/configLogBackSpring_jegfg5.png)
