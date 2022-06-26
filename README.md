@@ -5,8 +5,9 @@ Esta es una API realizada con java lo cual implementare:
     - Conexión a una base de datos, Mysql.
     - Manejos de excepciones.
     - Configuracion de logs dependiendo el perfil.
-    - Documentación con Swagger
-    - FrontEnd con React
+    - Documentación con Swagger.
+    - FrontEnd con React.
+    - Deploy en Heroku.
 
 **Instalación:**
 
@@ -19,3 +20,9 @@ Modificando **port** y **DB**, el usuario y pass en las properties le damos a pl
 **Configuración Logs:**
 
 ![img](https://res.cloudinary.com/depp3dev/image/upload/v1656276550/full-stack/configLogBackSpring_jegfg5.png)
+
+**Applicación Deployada**
+
+[Preview de la app](https://depp3v1.herokuapp.com/api/v1/swagger-ui.html)
+
+![img](https://res.cloudinary.com/depp3dev/image/upload/v1656286177/full-stack/swaggerIndex_vaxjwk.png)
