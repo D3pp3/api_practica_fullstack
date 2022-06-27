@@ -4,8 +4,7 @@ branches:
     - main
 notifications:
   email:
-    recipients:
-      - joalvarez.depp3@gmail.com
+    - joalvarez.depp3@gmail.com
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 deploy:
