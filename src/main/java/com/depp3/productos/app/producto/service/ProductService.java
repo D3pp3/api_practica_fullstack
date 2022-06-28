@@ -1,6 +1,5 @@
 package com.depp3.productos.app.producto.service;
 
-import com.depp3.productos.app.producto.ProductValidations;
 import com.depp3.productos.app.producto.data.domain.Product;
 import com.depp3.productos.app.producto.data.dto.ProductDTO;
 import com.depp3.productos.app.producto.data.mapper.ProductMapper;

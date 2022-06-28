@@ -1,4 +1,4 @@
-package com.depp3.productos.app.producto;
+package com.depp3.productos.app.producto.service;
 
 import com.depp3.productos.app.producto.data.dto.ProductDTO;
 import com.depp3.productos.app.producto.data.repository.ProductRepository;
@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class ProductValidations {
 
-    private static final String PRODUCT = "producto";
+    public static final String PRODUCT = "producto";
 
     public static void getByIdValidation(ProductRepository repository, Long id) {
         existById(repository, id);
