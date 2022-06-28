@@ -26,7 +26,7 @@
         <root level="info">
             <appender-ref ref="Console"/>
         </root>
-        <logger name="com.depp3.productos" level="debug" additivity="false" >
+        <logger name="com.depp3.d3v1" level="debug" additivity="false" >
             <appender-ref ref="Console" />
             <appender-ref ref="RollingFile"/>
         </logger>
@@ -35,7 +35,7 @@
         <root level="warn">
             <appender-ref ref="RollingFile"/>
         </root>
-        <logger name="com.depp3.productos" level="warn" additivity="false" >
+        <logger name="com.depp3.d3v1" level="warn" additivity="false" >
             <appender-ref ref="RollingFile" />
         </logger>
     </springProfile>
