@@ -11,16 +11,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 class ProductServiceTest {
 
     @Mock
@@ -133,13 +135,15 @@ class ProductServiceTest {
                 .willReturn(ProductMapper.getInstance().productDTOToProduct(productDTO));
 
         // when
-        ProductDTO save = underTest.saveProduct(productDTO);
+        underTest.saveProduct(productDTO);
+        ArgumentCaptor<Product> productArgumentCaptor = ArgumentCaptor.forClass(Product.class);
 
         // then
+        verify(productRepository).save(productArgumentCaptor.capture());
 
-        assertEquals(productDTO.getName(), save.getName());
-        assertEquals(productDTO.getDescription(), save.getDescription());
-        assertEquals(productDTO.getPrice(), save.getPrice());
+        assertEquals(productDTO.getName(), productArgumentCaptor.getValue().getName());
+        assertEquals(productDTO.getDescription(), productArgumentCaptor.getValue().getDescription());
+        assertEquals(productDTO.getPrice(), productArgumentCaptor.getValue().getPrice());
 
         verify(productRepository, atMostOnce()).save(any());
     }
@@ -167,7 +171,7 @@ class ProductServiceTest {
     public void shouldReturnProductDTO() {
         // given
         Product product = new Product(
-                1l,
+                1L,
                 "Harina",
                 "Harina de trigo x 1kg",
                 84.2d
@@ -175,13 +179,17 @@ class ProductServiceTest {
         given(productRepository.existsById(anyLong()))
                 .willReturn(true);
 
-        given(productRepository.getReferenceById(1l))
+        given(productRepository.getReferenceById(product.getId()))
                 .willReturn(product);
 
         // when
-        ProductDTO productDTO = underTest.getProductById(1l);
+        ProductDTO productDTO = underTest.getProductById(product.getId());
+        ArgumentCaptor<Long> arg = ArgumentCaptor.forClass(Long.class);
 
         // then
+        verify(productRepository).getReferenceById(arg.capture());
+
+        assertEquals(arg.getValue(), productDTO.getId());
         verify(productRepository, atMostOnce()).getReferenceById(any());
     }
 }
