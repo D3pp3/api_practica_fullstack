@@ -45,9 +45,8 @@ public class ProductService {
         modified.setDescription(productDTO.getDescription());
         modified.setName(productDTO.getName());
         modified.setPrice(productDTO.getPrice());
-        ProductDTO modifyProduct = ProductMapper.getInstance().productToProductDTO(repository.save(modified));
 
-        return modifyProduct;
+        return ProductMapper.getInstance().productToProductDTO(repository.save(modified));
     }
 
     public String deleteProduct(Long id) {
